@@ -297,6 +297,8 @@ This project is for research and educational purposes only. The Florence-2 model
 ## 🎉 Acknowledgments
 
 - [Microsoft Florence-2](https://huggingface.co/microsoft/Florence-2-base) - Vision foundation model
+- [Train dataset_1](https://drive.google.com/file/d/1SivTzkK6IVLH44S_2B5xSR00j96jkJ4-/view?usp=sharing) - Training dataset_1 for the project
+- [Train dataset_2](https://drive.google.com/file/d/18oU6FraMa3ybs_XmQhDNrZESRorbGqaG/view?usp=sharing) - Training dataset_2 for the project
 - [PEFT](https://github.com/huggingface/peft) - Parameter-Efficient Fine-Tuning library
 - [PyTorch](https://pytorch.org/) - Deep learning framework
 - [Albumentations](https://albumentations.ai/) - Image augmentation library
