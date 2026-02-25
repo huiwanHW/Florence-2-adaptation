@@ -1,0 +1,19 @@
+CUDA_VISIBLE_DEVICES=0 nohup python train_florence.py --data_root train --batch_size 8 --epochs 30 > train_output.log 2>&1 &
+CUDA_VISIBLE_DEVICES=1 nohup python train_florence_freeze_all.py --data_root train --batch_size 8 --epochs 30 > train_freeze_all_output.log 2>&1 &
+CUDA_VISIBLE_DEVICES=1 nohup python train_florence_full_finetune.py --data_root train --batch_size 8 --epochs 30 > train_full_finetune_output.log 2>&1 &
+CUDA_VISIBLE_DEVICES=2 nohup python train_florence_no_lora.py --data_root train --batch_size 8 --epochs 30 > train_no_lora_output.log 2>&1 &
+CUDA_VISIBLE_DEVICES=2 nohup python train_florence_no_prompt.py --data_root train --batch_size 8 --epochs 30 > train_no_prompt_output.log 2>&1 &
+CUDA_VISIBLE_DEVICES=2 nohup python train_florence_full_lora.py --data_root train --batch_size 8 --epochs 30 > train_full_lora_output.log 2>&1 &
+
+推导：python model.py --data_root valdataset --output_dir output_50 --model_path ../8bi2_train_model/50%_best_model.pth
+python model.py --data_root valdataset --output_dir output_60 --model_path ../8bi2_train_model/60%_best_model.pth
+python model.py --data_root valdataset --output_dir output_70 --model_path ../8bi2_train_model/70%_best_model.pth
+python model.py --data_root valdataset --output_dir output_80 --model_path ../8bi2_train_model/80%_best_model.pth
+
+评估：python evaluate_results.py
+
+训练：python train_florence.py --data_root train/train_2_csv --batch_size 8 --epochs 100
+消融：python ablation_study/train_florence_freeze_all.py --data_root train/train_2_csv --batch_size 8 --epochs 100
+python ablation_study/train_florence_full_lora.py --data_root train/train_2_csv --batch_size 8 --epochs 100
+python ablation_study/train_florence_no_lora.py --data_root train/train_2_csv --batch_size 8 --epochs 100
+python ablation_study/train_florence_no_prompt.py --data_root train/train_2_csv --batch_size 8 --epochs 100
